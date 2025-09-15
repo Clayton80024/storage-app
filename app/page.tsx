@@ -46,12 +46,16 @@ export default function Home() {
               <span className="text-lg sm:text-xl font-bold text-black">Storage</span>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-3">
-              <button className="bg-black hover:bg-gray-800 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-colors">
-                Sign In
-              </button>
-              <button className="border-2 border-black hover:bg-black hover:text-white text-black px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-colors">
-                Sign Up
-              </button>
+              <SignInButton mode="modal">
+                <button className="bg-black hover:bg-gray-800 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="border-2 border-black hover:bg-black hover:text-white text-black px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-colors">
+                  Sign Up
+                </button>
+              </SignUpButton>
             </div>
           </div>
         </header>
@@ -85,12 +89,16 @@ export default function Home() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-12 sm:mb-20">
-                <button className="w-full sm:w-auto bg-black hover:bg-gray-800 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl transition-all duration-200 transform hover:scale-105 shadow-lg sm:shadow-xl">
-                  Start Free Trial
-                </button>
-                <button className="w-full sm:w-auto border-2 border-black hover:bg-black hover:text-white text-black px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl transition-all duration-200">
-                  Sign In
-                </button>
+                <SignUpButton mode="modal">
+                  <button className="w-full sm:w-auto bg-black hover:bg-gray-800 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl transition-all duration-200 transform hover:scale-105 shadow-lg sm:shadow-xl">
+                    Start Free Trial
+                  </button>
+                </SignUpButton>
+                <SignInButton mode="modal">
+                  <button className="w-full sm:w-auto border-2 border-black hover:bg-black hover:text-white text-black px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl transition-all duration-200">
+                    Sign In
+                  </button>
+                </SignInButton>
               </div>
 
               {/* Features Grid */}
