@@ -63,12 +63,20 @@ DATABASE_URL=postgresql://username:password@host:port/database?sslmode=require
 UPLOADTHING_SECRET=your-uploadthing-secret-key
 UPLOADTHING_APP_ID=your-uploadthing-app-id
 
-# Clerk Authentication (optional)
+# Clerk Authentication (Required for full functionality)
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
 CLERK_SECRET_KEY=your-clerk-secret-key
 ```
 
-### 4. Database Setup
+### 4. Clerk Authentication Setup
+
+1. **Create a Clerk Account**: Visit [clerk.com](https://clerk.com) and create an account
+2. **Create a New Application**: Set up a new application in your Clerk dashboard
+3. **Get API Keys**: Copy your publishable key and secret key from the API Keys section
+4. **Configure Environment**: Add the keys to your `.env.local` file
+5. **Set up Authentication**: Configure sign-in/sign-up methods in Clerk dashboard
+
+### 5. Database Setup
 
 Generate Prisma client and push schema to database:
 
@@ -77,13 +85,21 @@ npm run db:generate
 npm run db:push
 ```
 
-### 5. Development Server
+### 6. Development Server
 
 ```bash
 npm run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see your app.
+
+## 🔐 Authentication Features
+
+- **User Registration**: Users can sign up with email/password or social providers
+- **Secure File Uploads**: Only authenticated users can upload files
+- **User-Specific Storage**: Each user sees only their own files
+- **File Access Control**: Users can only access files they uploaded
+- **Session Management**: Secure session handling with Clerk
 
 ## 📁 Project Structure
 
@@ -133,11 +149,12 @@ storage-app/
 ## 🔌 API Endpoints
 
 ### `/api/uploadthing`
-- **POST**: Handle file uploads via UploadThing
+- **POST**: Handle file uploads via UploadThing (requires authentication)
 - **GET**: UploadThing configuration
 
 ### `/api/files`
-- **GET**: Fetch user's uploaded files
+- **GET**: Fetch authenticated user's uploaded files
+- **DELETE**: Delete a file (requires ownership verification)
 
 ## 📦 Available Scripts
 
