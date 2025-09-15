@@ -2,12 +2,49 @@
 
 import { UploadButton } from "@uploadthing/react";
 import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
 import { ourFileRouter } from "@/lib/uploadthing";
 
 type FileRouter = typeof ourFileRouter;
 
+// Conditional hook wrapper for build compatibility
+function useClerkUser() {
+  try {
+    return useUser();
+  } catch (error) {
+    return { user: null, isLoaded: true };
+  }
+}
+
 export function FileUpload() {
   const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
+  const { user, isLoaded } = useClerkUser();
+
+  // Show sign-in prompt if user is not authenticated
+  if (!isLoaded) {
+    return (
+      <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+        <div className="animate-pulse">
+          <div className="h-6 bg-gray-200 rounded w-48 mb-4"></div>
+          <div className="h-32 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm text-center">
+        <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">Sign in to upload files</h3>
+        <p className="text-gray-600">Please sign in to access the file upload feature.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
@@ -15,6 +52,9 @@ export function FileUpload() {
         <h2 className="text-xl font-semibold text-black mb-2">Upload Files</h2>
         <p className="text-gray-600">
           Upload your files securely to the cloud. Supported formats: Images, PDFs, Videos, Audio, and more.
+        </p>
+        <p className="text-sm text-gray-500 mt-2">
+          Signed in as: {user.emailAddresses[0]?.emailAddress || user.firstName || 'User'}
         </p>
       </div>
       
@@ -26,6 +66,8 @@ export function FileUpload() {
               const fileUrls = res.map(file => file.url);
               setUploadedFiles(prev => [...prev, ...fileUrls]);
               console.log("Files uploaded:", fileUrls);
+              // Refresh the file list
+              window.location.reload();
             }
           }}
           onUploadError={(error: Error) => {

@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  // For build purposes, use a conditional wrapper
+  // For build compatibility, use conditional wrapper
   const ClerkWrapper = ({ children }: { children: React.ReactNode }) => {
     if (!publishableKey || publishableKey.includes('placeholder')) {
       return <>{children}</>;
