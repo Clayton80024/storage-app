@@ -3,6 +3,8 @@
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { ProtectedContent } from './components/ProtectedContent';
+import { FileUpload } from './components/FileUpload';
+import { FileList } from './components/FileList';
 import { useUser, SignInButton, SignUpButton } from '@clerk/nextjs';
 
 // Conditional hook wrapper for build compatibility
@@ -252,47 +254,13 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Recent Files */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-                <div className="px-8 py-6 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold text-black">Recent Files</h2>
-                </div>
-                <div className="divide-y divide-gray-200">
-                  {[
-                    { name: 'Project Proposal.pdf', size: '2.4 MB', modified: '2 hours ago', type: 'pdf' },
-                    { name: 'Meeting Notes.docx', size: '156 KB', modified: '1 day ago', type: 'doc' },
-                    { name: 'Design Mockups.fig', size: '8.7 MB', modified: '2 days ago', type: 'fig' },
-                    { name: 'Budget Spreadsheet.xlsx', size: '89 KB', modified: '3 days ago', type: 'xls' },
-                  ].map((file, index) => (
-                    <div key={index} className="px-8 py-6 hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-                            <span className="text-sm font-semibold text-white">
-                              {file.type.toUpperCase()}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-base font-medium text-black truncate">
-                            {file.name}
-                          </p>
-                          <p className="text-sm text-gray-500 mt-1">
-                            {file.size} • Modified {file.modified}
-                          </p>
-                        </div>
-                        <div className="flex-shrink-0">
-                          <button className="text-gray-400 hover:text-black p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              {/* File Upload Section */}
+              <div className="mb-10">
+                <FileUpload />
               </div>
+
+              {/* Recent Files */}
+              <FileList />
         </div>
           </ProtectedContent>
       </main>
