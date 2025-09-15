@@ -118,18 +118,18 @@ export function Sidebar() {
 
         {/* User Info */}
         {user && !isCollapsed && (
-          <div className="p-4 border-b border-black">
+          <div className="p-6 border-b border-black">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
-                <span className="text-white font-medium text-sm">
+              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white font-medium text-lg">
                   {user.firstName?.charAt(0) || user.emailAddresses[0]?.emailAddress.charAt(0)}
                 </span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-black truncate">
+                <p className="text-sm font-semibold text-black truncate">
                   {user.firstName ? `${user.firstName} ${user.lastName || ''}` : 'User'}
                 </p>
-                <p className="text-xs text-gray-600 truncate">
+                <p className="text-xs text-gray-500 truncate">
                   {user.emailAddresses[0]?.emailAddress}
                 </p>
               </div>
@@ -138,8 +138,8 @@ export function Sidebar() {
         )}
 
         {/* Navigation */}
-        <nav className="flex-1 p-4">
-          <ul className="space-y-1">
+        <nav className="flex-1 p-6">
+          <ul className="space-y-2">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -147,7 +147,7 @@ export function Sidebar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileOpen(false)}
-                    className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       isActive
                         ? 'text-black border-r-2 border-black bg-gray-50'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-black'
@@ -165,11 +165,11 @@ export function Sidebar() {
 
         {/* Storage Usage */}
         {!isCollapsed && (
-          <div className="p-4 border-t border-black">
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs text-gray-600">
-                <span>Storage Used</span>
-                <span>2.1 GB / 15 GB</span>
+          <div className="p-6 border-t border-black">
+            <div className="space-y-3">
+              <div className="flex justify-between text-xs text-gray-500">
+                <span className="font-medium">Storage Used</span>
+                <span className="font-semibold">2.1 GB / 15 GB</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div className="bg-black h-2 rounded-full" style={{ width: '14%' }}></div>
