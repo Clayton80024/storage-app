@@ -74,7 +74,7 @@ export function Sidebar() {
     <>
       {/* Mobile menu button */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg border border-black"
+        className="lg:hidden fixed top-3 left-3 z-50 p-2 bg-white rounded-lg shadow-lg border border-gray-300"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
       >
         <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,12 +91,12 @@ export function Sidebar() {
       )}
 
       {/* Sidebar */}
-      <div className={`bg-white border-r border-black h-full transition-all duration-300 ${
+      <div className={`bg-white h-full transition-all duration-300 ${
         isCollapsed ? 'w-16' : 'w-64'
       } ${isMobileOpen ? 'fixed inset-y-0 left-0 z-50 lg:relative lg:z-auto' : 'hidden lg:block'}`}>
         {/* Header */}
-        <div className="p-4 border-b border-black">
-          <div className="flex items-center justify-between">
+        <div className="p-4">
+          <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
             {!isCollapsed && (
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
@@ -105,9 +105,14 @@ export function Sidebar() {
                 <span className="font-semibold text-black">Storage</span>
               </div>
             )}
+            {isCollapsed && (
+              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">S</span>
+              </div>
+            )}
             <button
               onClick={() => setIsCollapsed(!isCollapsed)}
-              className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+              className={`p-1.5 rounded-lg hover:bg-gray-100 transition-colors ${isCollapsed ? 'absolute top-4 right-2' : ''}`}
             >
               <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
@@ -118,7 +123,7 @@ export function Sidebar() {
 
         {/* User Info */}
         {user && !isCollapsed && (
-          <div className="p-6 border-b border-black">
+          <div className="p-6">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
                 <span className="text-white font-medium text-lg">
@@ -147,9 +152,9 @@ export function Sidebar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileOpen(false)}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'} px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       isActive
-                        ? 'text-black border-r-2 border-black bg-gray-50'
+                        ? 'text-black bg-gray-100 font-semibold'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-black'
                     }`}
                     title={isCollapsed ? item.name : undefined}
@@ -165,7 +170,7 @@ export function Sidebar() {
 
         {/* Storage Usage */}
         {!isCollapsed && (
-          <div className="p-6 border-t border-black">
+          <div className="p-6">
             <div className="space-y-3">
               <div className="flex justify-between text-xs text-gray-500">
                 <span className="font-medium">Storage Used</span>
