@@ -25,12 +25,12 @@ export function AuthButtons() {
   return (
     <div className="flex items-center space-x-4">
       <SignInButton mode="modal">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+        <button className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-colors">
           Sign In
         </button>
       </SignInButton>
       <SignUpButton mode="modal">
-        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+        <button className="border border-black hover:bg-gray-100 text-black px-4 py-2 rounded-lg transition-colors">
           Sign Up
         </button>
       </SignUpButton>
