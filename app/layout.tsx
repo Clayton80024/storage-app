@@ -26,12 +26,16 @@ export default function RootLayout({
 }>) {
   const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  if (!publishableKey) {
-    throw new Error('Missing NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable');
-  }
+  // For build purposes, use a conditional wrapper
+  const ClerkWrapper = ({ children }: { children: React.ReactNode }) => {
+    if (!publishableKey || publishableKey.includes('placeholder')) {
+      return <>{children}</>;
+    }
+    return <ClerkProvider publishableKey={publishableKey}>{children}</ClerkProvider>;
+  };
 
   return (
-    <ClerkProvider publishableKey={publishableKey}>
+    <ClerkWrapper>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
@@ -42,6 +46,6 @@ export default function RootLayout({
           <SpeedInsights />
         </body>
       </html>
-    </ClerkProvider>
+    </ClerkWrapper>
   );
 }
