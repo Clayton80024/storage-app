@@ -5,12 +5,18 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:test": "tsx scripts/test-db.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.32.0",
+    "@prisma/client": "^6.16.1",
     "@vercel/speed-insights": "^1.2.0",
     "next": "15.5.3",
+    "prisma": "^6.16.1",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -20,6 +26,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
+    "tsx": "^4.20.5",
     "typescript": "^5"
   }
 }
