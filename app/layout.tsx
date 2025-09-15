@@ -33,9 +33,11 @@ export default function RootLayout({
     <ClerkProvider publishableKey={publishableKey}>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
         >
-          {children}
+          <div className="min-h-screen flex">
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>

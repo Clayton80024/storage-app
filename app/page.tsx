@@ -1,6 +1,7 @@
 'use client';
 
-import { AuthButtons } from './components/AuthButtons';
+import { Sidebar } from './components/Sidebar';
+import { Header } from './components/Header';
 import { ProtectedContent } from './components/ProtectedContent';
 import { useUser } from '@clerk/nextjs';
 
@@ -8,120 +9,168 @@ export default function Home() {
   const { user } = useUser();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">Storage App</h1>
-            </div>
-            <AuthButtons />
-          </div>
+    <>
+      {/* Sidebar */}
+      <Sidebar />
+      
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-h-screen">
+        {/* Header */}
+        <Header />
+        
+        {/* Page Content */}
+        <main className="flex-1 p-6 lg:ml-0 ml-0">
+          <ProtectedContent
+            fallback={
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center py-16">
+                  <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                    Welcome to Storage App
+                  </h1>
+                  <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                    A secure, cloud-based storage solution with enterprise-grade authentication. 
+                    Sign in to access your files and start managing your digital storage.
+                  </p>
+                  <div className="flex justify-center space-x-4">
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                      Get Started
+                    </button>
+                    <button className="border border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors">
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+          >
+            <div className="max-w-7xl mx-auto">
+              {/* Welcome Section */}
+              <div className="mb-8">
+                <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                  Welcome back, {user?.firstName || 'User'}!
+                </h1>
+                <p className="text-gray-600">
+                  Here's what's happening with your storage today.
+                </p>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-500">Total Files</p>
+                      <p className="text-2xl font-semibold text-gray-900">1,247</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-500">Storage Used</p>
+                      <p className="text-2xl font-semibold text-gray-900">2.1 GB</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-500">Shared Files</p>
+                      <p className="text-2xl font-semibold text-gray-900">23</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-500">Recent Activity</p>
+                      <p className="text-2xl font-semibold text-gray-900">12</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recent Files */}
+              <div className="bg-white rounded-lg border border-gray-200">
+                <div className="px-6 py-4 border-b border-gray-200">
+                  <h2 className="text-lg font-semibold text-gray-900">Recent Files</h2>
+                </div>
+                <div className="divide-y divide-gray-200">
+                  {[
+                    { name: 'Project Proposal.pdf', size: '2.4 MB', modified: '2 hours ago', type: 'pdf' },
+                    { name: 'Meeting Notes.docx', size: '156 KB', modified: '1 day ago', type: 'doc' },
+                    { name: 'Design Mockups.fig', size: '8.7 MB', modified: '2 days ago', type: 'fig' },
+                    { name: 'Budget Spreadsheet.xlsx', size: '89 KB', modified: '3 days ago', type: 'xls' },
+                  ].map((file, index) => (
+                    <div key={index} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span className="text-sm font-medium text-gray-600">
+                              {file.type.toUpperCase()}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-gray-900 truncate">
+                            {file.name}
+                          </p>
+                          <p className="text-sm text-gray-500">
+                            {file.size} • Modified {file.modified}
+                          </p>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <button className="text-gray-400 hover:text-gray-600">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
         </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Welcome to Storage App
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            A secure, cloud-based storage solution with enterprise-grade authentication
-          </p>
-        </div>
-
-        <ProtectedContent
-          fallback={
-            <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Secure Access Required
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Please sign in to access your secure storage and manage your files.
-                </p>
-                <AuthButtons />
-              </div>
-            </div>
-          }
-        >
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Welcome back, {user?.firstName || 'User'}!
-              </h3>
-              <p className="text-gray-600">
-                You're successfully authenticated and can now access your storage.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-blue-50 rounded-lg p-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Upload Files</h4>
-                <p className="text-gray-600 text-sm">
-                  Securely upload and store your files in the cloud.
-                </p>
-              </div>
-
-              <div className="bg-green-50 rounded-lg p-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Manage Storage</h4>
-                <p className="text-gray-600 text-sm">
-                  Organize, share, and manage your stored files efficiently.
-                </p>
-              </div>
-
-              <div className="bg-purple-50 rounded-lg p-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Secure Access</h4>
-                <p className="text-gray-600 text-sm">
-                  Your data is protected with enterprise-grade security.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 text-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                Get Started
-              </button>
-            </div>
-          </div>
-        </ProtectedContent>
+          </ProtectedContent>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-gray-600">
-            <p>&copy; 2024 Storage App. Built with Next.js and Clerk.</p>
-          </div>
-        </div>
-      </footer>
     </div>
+    </>
   );
 }
