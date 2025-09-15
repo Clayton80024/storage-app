@@ -14,16 +14,20 @@ export async function GET() {
       );
     }
 
-    // Find the user in our database
-    const user = await prisma.user.findUnique({
+    // Find the user in our database, or create if they don't exist
+    let user = await prisma.user.findUnique({
       where: { clerkId: userId }
     });
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+      // Create user if they don't exist
+      user = await prisma.user.create({
+        data: {
+          clerkId: userId,
+          email: "", // We'll update this when we get more user info
+          name: "User"
+        }
+      });
     }
 
     // Get files for this specific user
@@ -59,16 +63,20 @@ export async function DELETE(request: Request) {
       );
     }
 
-    // Find the user in our database
-    const user = await prisma.user.findUnique({
+    // Find the user in our database, or create if they don't exist
+    let user = await prisma.user.findUnique({
       where: { clerkId: userId }
     });
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+      // Create user if they don't exist
+      user = await prisma.user.create({
+        data: {
+          clerkId: userId,
+          email: "", // We'll update this when we get more user info
+          name: "User"
+        }
+      });
     }
 
     // Get file ID from request body
