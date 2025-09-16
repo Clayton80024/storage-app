@@ -31,29 +31,29 @@ export function LandingPage() {
 
       {/* Hero Section - Full Screen */}
       <main className="flex-1 flex items-center justify-center">
-        <div className="w-full px-6 py-16">
-          <div className="text-center max-w-6xl mx-auto">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="text-center w-full">
             {/* Hero Icon */}
-            <div className="mb-12">
-              <div className="w-32 h-32 bg-green-500 rounded-4xl flex items-center justify-center mx-auto shadow-2xl">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mb-8">
+              <div className="w-24 h-24 bg-green-500 rounded-3xl flex items-center justify-center mx-auto shadow-xl">
+                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
                 </svg>
               </div>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-6xl lg:text-8xl font-bold text-black mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6 leading-tight">
               Do more with your business conversations
             </h1>
 
             {/* Sub-headline */}
-            <div className="text-4xl lg:text-6xl text-gray-600 font-normal mb-12">
+            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-gray-600 font-normal mb-8">
               Store • Organize • Access
             </div>
 
             {/* Description */}
-            <p className="text-2xl lg:text-3xl text-gray-600 mb-16 leading-relaxed max-w-5xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto">
               Save and organize all your important business communications from WhatsApp Business, 
               Telegram, and other platforms. Never lose important messages, documents, or customer 
               information again with our secure cloud storage solution.
@@ -62,12 +62,12 @@ export function LandingPage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-8">
               <SignUpButton mode="modal">
-                <button className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-12 py-6 rounded-3xl font-bold text-2xl transition-all duration-200 transform hover:scale-105 shadow-2xl">
+                <button className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-200 transform hover:scale-105 shadow-xl">
                   Get Started
                 </button>
               </SignUpButton>
               <SignInButton mode="modal">
-                <button className="w-full sm:w-auto border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-600 px-12 py-6 rounded-3xl font-bold text-2xl transition-all duration-200">
+                <button className="w-full sm:w-auto border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-600 px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-200">
                   Sign In
                 </button>
               </SignInButton>
