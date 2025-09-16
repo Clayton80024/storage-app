@@ -4,251 +4,433 @@ import { SignInButton, SignUpButton } from '@clerk/nextjs';
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex flex-col">
-      {/* Header */}
-      <header className="bg-white py-4 flex-shrink-0 shadow-sm">
-        <div className="w-full px-6 flex items-center justify-between max-w-7xl mx-auto">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
+    <div className="min-h-screen bg-white">
+      {/* Header - Full Width */}
+      <header className="w-full bg-white border-b border-gray-200">
+        <div className="w-full px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-sm">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+              </div>
+              <div>
+                <span className="text-xl font-bold text-gray-900">StorageHub</span>
+                <div className="text-xs text-gray-500">Business Communications</div>
+              </div>
             </div>
-            <span className="text-xl font-bold text-black">Storage</span>
-          </div>
-          <div className="flex items-center space-x-3">
-            <SignInButton mode="modal">
-              <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold text-base transition-colors">
-                Sign In
-              </button>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <button className="border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-600 px-6 py-3 rounded-xl font-semibold text-base transition-colors">
-                Sign Up
-              </button>
-            </SignUpButton>
+            <div className="flex items-center space-x-4">
+              <SignInButton mode="modal">
+                <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                  Start Free Trial
+                </button>
+              </SignUpButton>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section - Full Screen */}
-      <main className="flex-1 flex items-center justify-center">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center w-full">
-            {/* Hero Icon */}
-            <div className="mb-8">
-              <div className="w-24 h-24 bg-green-500 rounded-3xl flex items-center justify-center mx-auto shadow-xl">
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                </svg>
-              </div>
+      {/* Hero Section */}
+      <main className="w-full">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-50 border border-green-200 mb-8">
+              <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-sm font-medium text-green-800">Trusted by 10,000+ businesses</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-6 leading-tight">
-              Do more with your business conversations
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight max-w-4xl mx-auto">
+              Never Lose Another Important Business Message
             </h1>
 
             {/* Sub-headline */}
-            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-gray-600 font-normal mb-8">
-              Store • Organize • Access
-            </div>
-
-            {/* Description */}
-            <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto">
-              Save and organize all your important business communications from WhatsApp Business, 
-              Telegram, and other platforms. Never lose important messages, documents, or customer 
-              information again with our secure cloud storage solution.
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Secure, organized storage for all your WhatsApp Business, Telegram, and messaging communications. 
+              Save 2+ hours daily with automated message backup and smart organization.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-8">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
               <SignUpButton mode="modal">
-                <button className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-200 transform hover:scale-105 shadow-xl">
-                  Get Started
+                <button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                  Secure Your Messages Now
                 </button>
               </SignUpButton>
-              <SignInButton mode="modal">
-                <button className="w-full sm:w-auto border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-600 px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-200">
-                  Sign In
+              <button className="w-full sm:w-auto border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+                Watch Demo
+              </button>
+            </div>
+
+            {/* Security Badges */}
+            <div className="flex flex-wrap justify-center items-center space-x-8 text-sm text-gray-500 mb-16">
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                SOC 2 Compliant
+              </div>
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                End-to-End Encrypted
+              </div>
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                99.9% Uptime SLA
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="bg-gray-50 py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Everything You Need to Secure Your Business Communications
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Stop losing important messages. Our platform automatically backs up and organizes all your business conversations.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Feature 1 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Auto Backup</h3>
+                <p className="text-gray-600 text-sm">Automatically sync WhatsApp Business, Telegram, and other messaging platforms</p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Search</h3>
+                <p className="text-gray-600 text-sm">Find any message, document, or conversation instantly with AI-powered search</p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Team Access</h3>
+                <p className="text-gray-600 text-sm">Share conversations securely with team members and set access permissions</p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Analytics</h3>
+                <p className="text-gray-600 text-sm">Track communication patterns and get insights on customer interactions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Social Proof Section */}
+        <div className="py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Trusted by Growing Businesses
+              </h2>
+              <p className="text-lg text-gray-600">
+                See how companies save time and never lose important conversations
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Testimonial 1 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-green-600 font-bold text-lg">AC</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Alex Chen</div>
+                    <div className="text-sm text-gray-500">CEO, TechStart Inc.</div>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "We saved 3 hours daily by organizing our WhatsApp Business conversations. 
+                  Never lost a customer inquiry again."
+                </p>
+                <div className="text-green-600 font-semibold">+40% Response Time</div>
+              </div>
+
+              {/* Testimonial 2 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-blue-600 font-bold text-lg">SM</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Sarah Martinez</div>
+                    <div className="text-sm text-gray-500">Operations Manager, RetailCo</div>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "The smart search feature helped us find customer orders instantly. 
+                  Our team collaboration improved dramatically."
+                </p>
+                <div className="text-blue-600 font-semibold">+60% Team Efficiency</div>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-purple-600 font-bold text-lg">DJ</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">David Johnson</div>
+                    <div className="text-sm text-gray-500">Founder, ConsultingPro</div>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Client communications are now perfectly organized. 
+                  We can access any conversation from any device instantly."
+                </p>
+                <div className="text-purple-600 font-semibold">100% Accessibility</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Pricing Section */}
+        <div className="bg-gray-50 py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Simple, Transparent Pricing
+              </h2>
+              <p className="text-lg text-gray-600">
+                Start free, scale as you grow
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Free Plan */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Starter</h3>
+                  <div className="text-3xl font-bold text-gray-900 mb-4">Free</div>
+                  <p className="text-gray-600 mb-6">Perfect for small businesses</p>
+                  <ul className="text-left space-y-3 mb-8">
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Up to 1,000 messages/month
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Basic search
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Email support
+                    </li>
+                  </ul>
+                  <SignUpButton mode="modal">
+                    <button className="w-full border border-gray-300 hover:border-gray-400 text-gray-700 py-3 rounded-lg font-semibold transition-colors">
+                      Get Started Free
+                    </button>
+                  </SignUpButton>
+                </div>
+              </div>
+
+              {/* Pro Plan */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border-2 border-green-500 relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Professional</h3>
+                  <div className="text-3xl font-bold text-gray-900 mb-4">$29<span className="text-lg text-gray-600">/month</span></div>
+                  <p className="text-gray-600 mb-6">For growing businesses</p>
+                  <ul className="text-left space-y-3 mb-8">
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Unlimited messages
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      AI-powered search
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Team collaboration
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Priority support
+                    </li>
+                  </ul>
+                  <SignUpButton mode="modal">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                      Start Free Trial
+                    </button>
+                  </SignUpButton>
+                </div>
+              </div>
+
+              {/* Enterprise Plan */}
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Enterprise</h3>
+                  <div className="text-3xl font-bold text-gray-900 mb-4">Custom</div>
+                  <p className="text-gray-600 mb-6">For large organizations</p>
+                  <ul className="text-left space-y-3 mb-8">
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Everything in Pro
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Custom integrations
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Dedicated support
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600">
+                      <svg className="w-4 h-4 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      On-premise deployment
+                    </li>
+                  </ul>
+                  <button className="w-full border border-gray-300 hover:border-gray-400 text-gray-700 py-3 rounded-lg font-semibold transition-colors">
+                    Contact Sales
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div className="py-16 bg-green-600">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Ready to Secure Your Business Communications?
+            </h2>
+            <p className="text-xl text-green-100 mb-8">
+              Join 10,000+ businesses who never lose important messages
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <SignUpButton mode="modal">
+                <button className="w-full sm:w-auto bg-white hover:bg-gray-100 text-green-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105">
+                  Start Free Trial
                 </button>
-              </SignInButton>
+              </SignUpButton>
+              <button className="w-full sm:w-auto border-2 border-white hover:bg-white hover:text-green-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200">
+                Schedule Demo
+              </button>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Additional Sections - Below the fold */}
-      <div className="bg-white">
-        <div className="w-full px-6 py-24">
-          <div className="text-center max-w-6xl mx-auto">
-            {/* Product Differentiation Section */}
-            <div className="mb-20">
-              <h2 className="text-4xl font-bold text-black mb-12">
-                Business storage solutions for any company size
-              </h2>
-              <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
-                Our storage solutions support businesses from large to small, see which product best fits your needs.
-              </p>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                {/* Business Platform */}
-                <div className="bg-gray-50 rounded-3xl p-10 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="text-left">
-                    <h3 className="text-2xl font-bold text-black mb-6">Business Platform</h3>
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                      For medium to large businesses managing communications at scale through automated integrations
-                    </p>
-                    <ul className="space-y-4 mb-10">
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        WhatsApp Business integration
-                      </li>
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Telegram Bot API support
-                      </li>
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Advanced analytics & reporting
-                      </li>
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Team collaboration tools
-                      </li>
-                    </ul>
-                    <SignUpButton mode="modal">
-                      <button className="w-full bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-colors">
-                        Get started
-                      </button>
-                    </SignUpButton>
-                  </div>
+      {/* Footer */}
+      <footer className="bg-gray-900 py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
                 </div>
-
-                {/* Personal App */}
-                <div className="bg-gray-50 rounded-3xl p-10 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="text-left">
-                    <h3 className="text-2xl font-bold text-black mb-6">Personal Storage</h3>
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                      For small businesses and individuals who personally manage their communications and files
-                    </p>
-                    <ul className="space-y-4 mb-10">
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Manual message backup
-                      </li>
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        File organization tools
-                      </li>
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Secure cloud storage
-                      </li>
-                      <li className="flex items-center text-base text-gray-700">
-                        <svg className="w-6 h-6 text-green-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Cross-device access
-                      </li>
-                    </ul>
-                    <SignUpButton mode="modal">
-                      <button className="w-full bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-colors">
-                        Download app
-                      </button>
-                    </SignUpButton>
-                  </div>
-                </div>
+                <span className="text-white font-bold">StorageHub</span>
               </div>
+              <p className="text-gray-400 text-sm">
+                Secure business communications storage for modern teams.
+              </p>
             </div>
-
-            {/* Success Stories Section */}
-            <div className="mb-20">
-              <h2 className="text-4xl font-bold text-black mb-6">
-                Success Stories
-              </h2>
-              <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
-                From banking, e-commerce, and more, our platform helps businesses drive results by organizing their communications.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-gray-50 rounded-3xl p-8 shadow-lg border border-gray-100 text-center">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-3">E-commerce Store</h3>
-                  <p className="text-base text-gray-600 mb-6">
-                    "Saved 2 hours daily by organizing WhatsApp Business conversations and customer orders in one place."
-                  </p>
-                  <div className="text-3xl font-bold text-green-600">+40% Efficiency</div>
-                </div>
-                
-                <div className="bg-gray-50 rounded-3xl p-8 shadow-lg border border-gray-100 text-center">
-                  <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-3">Banking Service</h3>
-                  <p className="text-base text-gray-600 mb-6">
-                    "Never lost customer information again. All Telegram conversations and documents are safely stored."
-                  </p>
-                  <div className="text-3xl font-bold text-blue-600">100% Secure</div>
-                </div>
-                
-                <div className="bg-gray-50 rounded-3xl p-8 shadow-lg border border-gray-100 text-center">
-                  <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-3">Consulting Firm</h3>
-                  <p className="text-base text-gray-600 mb-6">
-                    "Team collaboration improved dramatically with organized client communications and shared documents."
-                  </p>
-                  <div className="text-3xl font-bold text-purple-600">+60% Team Sync</div>
-                </div>
-              </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Product</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
+              </ul>
             </div>
-
-            {/* Final CTA Section */}
-            <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-3xl p-16 text-center text-white">
-              <h2 className="text-4xl font-bold mb-8">
-                Take the next step
-              </h2>
-              <p className="text-2xl text-green-100 mb-12 max-w-3xl mx-auto">
-                Start transforming your customer experience by organizing all your business communications in one secure place.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-8">
-                <SignUpButton mode="modal">
-                  <button className="w-full sm:w-auto bg-white hover:bg-gray-100 text-green-600 px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-200 transform hover:scale-105">
-                    Learn more
-                  </button>
-                </SignUpButton>
-                <SignInButton mode="modal">
-                  <button className="w-full sm:w-auto border-2 border-white hover:bg-white hover:text-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-200">
-                    Get Started
-                  </button>
-                </SignInButton>
-              </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Support</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Status</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
+              </ul>
             </div>
           </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              © 2024 StorageHub. All rights reserved.
+            </p>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
