@@ -7,7 +7,6 @@ import { ProtectedContent } from './components/ProtectedContent';
 import { FileUpload } from './components/FileUpload';
 import { FileList } from './components/FileList';
 import { StatsGrid } from './components/StatsGrid';
-import { LandingPage } from './components/LandingPage';
 import { useUser } from '@clerk/nextjs';
 
 // Conditional hook wrapper for build compatibility
@@ -24,7 +23,7 @@ export default function Home() {
   const { user, isLoaded } = useClerkUser();
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  // Show full landing page for unauthenticated users
+  // Show loading state while Clerk is initializing
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -37,8 +36,28 @@ export default function Home() {
     );
   }
 
+  // Show sign-in prompt for unauthenticated users
   if (!user) {
-    return <LandingPage />;
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            Welcome to StorageHub
+          </h1>
+          <p className="text-gray-600 mb-6">
+            Please sign in to access your files and storage.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <a href="/sign-in" className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+              Sign In
+            </a>
+            <a href="/sign-up" className="border border-gray-300 hover:border-gray-400 text-gray-700 px-6 py-2 rounded-lg font-semibold transition-colors">
+              Sign Up
+            </a>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   // Authenticated user experience
