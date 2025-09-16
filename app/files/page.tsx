@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
+import { Sidebar } from '../components/Sidebar';
+import { Header } from '../components/Header';
+import { ProtectedContent } from '../components/ProtectedContent';
 
 interface FileData {
   id: string;
@@ -220,33 +223,26 @@ export default function FilesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Files</h1>
-                <p className="text-gray-600 mt-1">
+    <>
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-h-screen">
+        {/* Header */}
+        <Header />
+
+        {/* Page Content */}
+        <main className="flex-1 p-8 lg:ml-0 ml-0">
+          <ProtectedContent fallback={null}>
+            <div className="max-w-7xl mx-auto">
+              {/* Page Header */}
+              <div className="mb-10">
+                <h1 className="text-3xl font-bold text-black mb-3">Your Files</h1>
+                <p className="text-lg text-gray-600">
                   Manage and organize your uploaded files
                 </p>
               </div>
-              <div className="flex items-center space-x-4">
-                <button
-                  onClick={() => window.location.href = '/'}
-                  className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  Upload Files
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Search and Controls */}
         <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8 shadow-sm">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 lg:space-x-6">
@@ -533,7 +529,10 @@ export default function FilesPage() {
             </div>
           </div>
         )}
+            </div>
+          </ProtectedContent>
+        </main>
       </div>
-    </div>
+    </>
   );
 }

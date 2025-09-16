@@ -4,15 +4,32 @@ import { AuthButtons } from './AuthButtons';
 import { useUser } from '@clerk/nextjs';
 import { useState } from 'react';
 
-export function Header() {
+interface HeaderProps {
+  onMobileMenuToggle?: () => void;
+}
+
+export function Header({ onMobileMenuToggle }: HeaderProps) {
   const { user } = useUser();
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   return (
-    <header className="bg-white px-4 sm:px-6 py-3 sm:py-4">
+    <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 sticky top-0 z-30">
       <div className="flex items-center justify-between">
-        {/* Search Bar - Hidden on mobile, visible on larger screens */}
-        <div className="hidden sm:flex flex-1 max-w-md">
+        {/* Mobile Menu Button & Search Bar */}
+        <div className="flex items-center space-x-3 flex-1">
+          {onMobileMenuToggle && (
+            <button
+              onClick={onMobileMenuToggle}
+              className="lg:hidden p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          )}
+          
+          {/* Search Bar - Hidden on mobile, visible on larger screens */}
+          <div className="hidden sm:flex flex-1 max-w-md">
           <div className={`relative transition-all duration-200 ${
             isSearchFocused ? 'ring-2 ring-black ring-opacity-20' : ''
           }`}>
@@ -28,6 +45,7 @@ export function Header() {
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setIsSearchFocused(false)}
             />
+          </div>
           </div>
         </div>
 

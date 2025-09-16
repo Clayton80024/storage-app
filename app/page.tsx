@@ -2,6 +2,7 @@
 
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
+import { useState } from 'react';
 import { ProtectedContent } from './components/ProtectedContent';
 import { FileUpload } from './components/FileUpload';
 import { FileList } from './components/FileList';
@@ -20,6 +21,7 @@ function useClerkUser() {
 
 export default function Home() {
   const { user, isLoaded } = useClerkUser();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // Show full landing page for unauthenticated users
   if (!isLoaded) {
@@ -171,45 +173,50 @@ export default function Home() {
 
   // Authenticated user experience
   return (
-    <>
+    <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar 
+        isMobileOpen={isMobileSidebarOpen}
+        onMobileClose={() => setIsMobileSidebarOpen(false)}
+      />
       
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col">
         {/* Header */}
-        <Header />
+        <Header onMobileMenuToggle={() => setIsMobileSidebarOpen(true)} />
         
         {/* Page Content */}
-        <main className="flex-1 p-8 lg:ml-0 ml-0">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <ProtectedContent
             fallback={null}
           >
             <div className="max-w-7xl mx-auto">
               {/* Welcome Section */}
-              <div className="mb-10">
-                <h1 className="text-3xl font-bold text-black mb-3">
+              <div className="mb-8 lg:mb-10">
+                <h1 className="text-2xl sm:text-3xl font-bold text-black mb-3">
                   Welcome back, {user?.firstName || 'User'}!
                 </h1>
-                <p className="text-lg text-gray-600">
+                <p className="text-base sm:text-lg text-gray-600">
                   Here's what's happening with your storage today.
                 </p>
               </div>
 
-                  {/* Stats Grid */}
-                  <StatsGrid />
+              {/* Stats Grid */}
+              <div className="mb-8 lg:mb-10">
+                <StatsGrid />
+              </div>
 
               {/* File Upload Section */}
-              <div className="mb-10">
+              <div className="mb-8 lg:mb-10">
                 <FileUpload />
               </div>
 
               {/* Recent Files */}
               <FileList />
-        </div>
+            </div>
           </ProtectedContent>
-      </main>
+        </main>
+      </div>
     </div>
-    </>
   );
 }

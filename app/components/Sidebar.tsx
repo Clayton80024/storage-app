@@ -64,36 +64,30 @@ const navigation = [
   },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isMobileOpen?: boolean;
+  onMobileClose?: () => void;
+}
+
+export function Sidebar({ isMobileOpen = false, onMobileClose }: SidebarProps) {
   const { user } = useUser();
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
     <>
-      {/* Mobile menu button */}
-      <button
-        className="lg:hidden fixed top-3 left-3 z-50 p-2 bg-white rounded-lg shadow-lg border border-gray-300"
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-      >
-        <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
       {/* Mobile overlay */}
       {isMobileOpen && (
         <div
           className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-50"
-          onClick={() => setIsMobileOpen(false)}
+          onClick={onMobileClose}
         />
       )}
 
       {/* Sidebar */}
-      <div className={`bg-white h-full transition-all duration-300 ${
+      <div className={`bg-white h-screen transition-all duration-300 border-r border-gray-200 ${
         isCollapsed ? 'w-16' : 'w-64'
-      } ${isMobileOpen ? 'fixed inset-y-0 left-0 z-50 lg:relative lg:z-auto' : 'hidden lg:block'}`}>
+      } ${isMobileOpen ? 'fixed inset-y-0 left-0 z-50 shadow-lg' : 'hidden lg:block lg:relative'}`}>
         {/* Header */}
         <div className="p-4">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
@@ -151,7 +145,7 @@ export function Sidebar() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    onClick={() => setIsMobileOpen(false)}
+                    onClick={onMobileClose}
                     className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'} px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       isActive
                         ? 'text-black bg-gray-100 font-semibold'

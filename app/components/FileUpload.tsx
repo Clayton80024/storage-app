@@ -18,6 +18,7 @@ function useClerkUser() {
 
 export function FileUpload() {
   const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
   const { user, isLoaded } = useClerkUser();
 
   // Show sign-in prompt if user is not authenticated
@@ -58,23 +59,58 @@ export function FileUpload() {
         </p>
       </div>
       
-      <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-gray-400 transition-colors">
+      <div className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
+        isUploading 
+          ? 'border-blue-400 bg-blue-50' 
+          : 'border-gray-300 hover:border-gray-400'
+      }`}>
+        {isUploading && (
+          <div className="mb-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto"></div>
+            <p className="text-sm text-gray-600 mt-2">Uploading files...</p>
+          </div>
+        )}
         <UploadButton<FileRouter, "fileUploader">
           endpoint="fileUploader"
           onClientUploadComplete={(res) => {
+            setIsUploading(false);
             if (res) {
               const fileUrls = res.map(file => file.url);
               setUploadedFiles(prev => [...prev, ...fileUrls]);
               console.log("Files uploaded:", fileUrls);
-              // Refresh the file list
-              window.location.reload();
+              
+              // Show success message
+              const successDiv = document.createElement('div');
+              successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+              successDiv.textContent = `${res.length} file(s) uploaded successfully!`;
+              document.body.appendChild(successDiv);
+              
+              // Remove success message after 3 seconds
+              setTimeout(() => {
+                document.body.removeChild(successDiv);
+              }, 3000);
+              
+              // Trigger a custom event to refresh file list
+              window.dispatchEvent(new CustomEvent('filesUploaded'));
             }
           }}
           onUploadError={(error: Error) => {
+            setIsUploading(false);
             console.error("Upload error:", error);
-            alert(`Upload failed: ${error.message}`);
+            
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            errorDiv.textContent = `Upload failed: ${error.message}`;
+            document.body.appendChild(errorDiv);
+            
+            // Remove error message after 5 seconds
+            setTimeout(() => {
+              document.body.removeChild(errorDiv);
+            }, 5000);
           }}
           onUploadBegin={(name) => {
+            setIsUploading(true);
             console.log("Upload begin:", name);
           }}
         />
